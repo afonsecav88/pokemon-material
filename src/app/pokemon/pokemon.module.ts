@@ -5,6 +5,7 @@ import { SearchPokemonComponent } from './components/search-pokemon/search-pokem
 import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
 import { PokemonListComponent } from './pages/pokemon-list/pokemon-list.component';
 import { PokemonRoutingModule } from './pokemon-routing.module';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { PokemonRoutingModule } from './pokemon-routing.module';
     SearchPokemonComponent,
     PokemonDetailsComponent,
     PokemonListComponent,
+    PokemonComponent,
   ],
   imports: [CommonModule, PokemonRoutingModule],
 })
