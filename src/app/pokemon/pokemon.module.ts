@@ -7,6 +7,7 @@ import { PokemonListComponent } from './pages/pokemon-list/pokemon-list.componen
 import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,6 @@ import { SharedModule } from '../shared/shared.module';
     PokemonListComponent,
     PokemonComponent,
   ],
-  imports: [CommonModule, PokemonRoutingModule, SharedModule],
+  imports: [CommonModule, PokemonRoutingModule, SharedModule, MaterialModule],
 })
 export class PokemonModule {}

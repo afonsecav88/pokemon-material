@@ -4,3 +4,20 @@
   flex-wrap: wrap;
   max-width: 100%;
 }
+
+.sidenav-container {
+  width: 100vw;
+  height: 78vh;
+}
+
+.sidenav-left {
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.sidenav-right {
+  margin-top: 5px;
+  padding-left: 10px;
+}

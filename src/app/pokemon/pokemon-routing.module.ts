@@ -6,7 +6,7 @@ import { PokemonListComponent } from './pages/pokemon-list/pokemon-list.componen
 
 const routes: Routes = [
   {
-    path: 'pokemon',
+    path: '',
     component: HomePageComponent,
     children: [
       { path: 'list', component: PokemonListComponent },

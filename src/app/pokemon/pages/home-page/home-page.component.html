@@ -1,8 +1,23 @@
 <div class="container">
-  <div><app-header /></div>
-  <div><app-sidenav /></div>
   <div>
-    <router-outlet />
+    <app-header />
   </div>
-  <div>footer</div>
+
+  <div>
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #left mode="push" closed>
+        <div class="sidenav-left">
+          <span> Menu de Búsqueda</span>
+        </div>
+      </mat-sidenav>
+
+      <mat-sidenav-content class="sidenav-right">
+        <button mat-icon-button class="example-icon" (click)="left.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <router-outlet />
+        <div><app-footer /></div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
 </div>

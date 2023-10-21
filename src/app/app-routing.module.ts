@@ -4,7 +4,7 @@ import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-p
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'pokemon',
     loadChildren: () =>
       import('./pokemon/pokemon.module').then((m) => m.PokemonModule),
   },
