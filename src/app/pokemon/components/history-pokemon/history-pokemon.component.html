@@ -1,0 +1,10 @@
+<mat-nav-list *ngIf="historySearch; else notSearch">
+  <div mat-subheader>Pokemons que ya has buscado:</div>
+  <mat-list-item *ngFor="let item of historySearch">
+    <button mat-stroked-button (click)="searchPokemon()" color="primary">
+      {{ item }}
+    </button>
+  </mat-list-item>
+</mat-nav-list>
+
+<ng-template #notSearch>No has buscado ningun pokemon </ng-template>

@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, inject } from '@angular/core';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'app-search-pokemon',
@@ -6,12 +7,16 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
   styleUrls: ['./search-pokemon.component.css'],
 })
 export class SearchPokemonComponent {
+  public servicePokemon = inject(PokemonService);
+
   @ViewChild('search')
   public search!: ElementRef<HTMLInputElement>;
 
   searchPokemon() {
     if (!this.search.nativeElement.value) return;
-    console.log('tiene valor el input');
+    const data = this.servicePokemon.getPokemon(
+      this.search.nativeElement.value
+    );
     this.search.nativeElement.value = '';
   }
 }
