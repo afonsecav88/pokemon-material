@@ -4,11 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotFoundPageComponent } from './shared/pages/not-found-page/not-found-page.component';
+
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundPageComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  declarations: [AppComponent],
+  exports: [],
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    SharedModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
