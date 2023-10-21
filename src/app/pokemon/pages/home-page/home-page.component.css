@@ -14,7 +14,8 @@
   display: flex;
   align-content: space-between;
   align-items: center;
-  padding-right: 10px;
+  padding: 5px;
+  /* padding-right: 5px; */
 }
 
 .sidenav-right {

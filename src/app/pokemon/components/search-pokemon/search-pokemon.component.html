@@ -1,1 +1,9 @@
-<p>search-pokemon works!</p>
+<div class="search-form-field">
+  <mat-form-field>
+    <mat-label>Busca un pokemon:</mat-label>
+    <input matInput #search />
+  </mat-form-field>
+  <button color="primary" mat-raised-button (click)="searchPokemon()">
+    Buscar
+  </button>
+</div>

@@ -1,0 +1,6 @@
+.search-form-field {
+  display: flex;
+  align-items: baseline;
+  max-width: 90%;
+  gap: 15px;
+}
