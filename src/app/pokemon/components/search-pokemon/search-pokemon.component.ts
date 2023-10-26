@@ -12,11 +12,9 @@ export class SearchPokemonComponent {
   @ViewChild('search')
   public search!: ElementRef<HTMLInputElement>;
 
-  searchPokemon() {
+  searchPokemon(): void {
     if (!this.search.nativeElement.value) return;
-    const data = this.servicePokemon.getPokemon(
-      this.search.nativeElement.value
-    );
+    this.servicePokemon.getPokemon(this.search.nativeElement.value).subscribe();
     this.search.nativeElement.value = '';
   }
 }
