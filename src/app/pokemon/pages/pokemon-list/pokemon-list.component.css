@@ -6,9 +6,9 @@
 }
 
 .example-card {
-  max-width: 300px;
+  max-width: 350px;
 }
-
-.example-header-image {
-
+.image-pokemon {
+  width: 200px;
+  height: 200px;
 }
