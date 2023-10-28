@@ -11,8 +11,6 @@ export class PokemonListComponent implements OnInit {
   public servicePokemon = inject(PokemonService);
   public pokemons!: Pokemon[];
 
-  constructor() {}
-
   ngOnInit(): void {
     this.pokemons = this.servicePokemon.pokemon;
   }

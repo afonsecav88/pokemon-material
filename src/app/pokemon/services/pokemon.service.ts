@@ -10,8 +10,8 @@ import { Observable, map, of } from 'rxjs';
 })
 export class PokemonService {
   public router = inject(Router);
-  public apiUrl = apiUrl;
   public http = inject(HttpClient);
+  public apiUrl = apiUrl;
   public pokemons: Pokemon[] = [];
 
   constructor() {
@@ -37,6 +37,14 @@ export class PokemonService {
     return pokemonFounded.length !== 0 ? true : false;
   }
 
+  private navigateAfterSearch() {
+    this.router
+      .navigateByUrl('/pokemon/pokemon/list', { skipLocationChange: false })
+      .then(() => {
+        this.router.navigate(['list']);
+      });
+  }
+
   getPokemon(pokemonName: string): Observable<any> {
     const searchPokemon = pokemonName.trim().toLowerCase();
     if (this.isPokemonFounded(searchPokemon))
@@ -44,7 +52,8 @@ export class PokemonService {
     const url: string = `${this.apiUrl}/${searchPokemon}`;
     return this.http.get<Pokemon>(url).pipe(
       map((resp: Pokemon) => {
-        this.pokemons.push(resp), this.updateLocalStorage(this.pokemons);
+        this.pokemons.unshift(resp), this.updateLocalStorage(this.pokemons);
+        this.navigateAfterSearch();
       })
     );
   }
