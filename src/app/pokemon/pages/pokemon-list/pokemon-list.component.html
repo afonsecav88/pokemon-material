@@ -1,5 +1,8 @@
 <div class="container-card">
-  <mat-card class="example-card" *ngFor="let pokemon of pokemons">
+  <mat-card
+    class="example-card"
+    *ngFor="let pokemon of pokemons; let i = index"
+  >
     <mat-card-header>
       <div mat-card-avatar class="example-header-image">
         <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
@@ -12,15 +15,14 @@
         [src]="pokemon.sprites.other.dream_world.front_default"
         alt="Pokemon "
       />
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz
-        breeds of dog from Japan. A small, agile dog that copes very well with
-        mountainous terrain, the Shiba Inu was originally bred for hunting.
-      </p>
+      <p></p>
     </mat-card-content>
-    <mat-card-actions>
-      <a [routerLink]="['/pokemon']" routerLinkActive="router-link-active">
-        <button mat-button>More details</button>
+    <mat-card-actions class="card-actions">
+      <a
+        [routerLink]="['/pokemon/pokemon/', i]"
+        routerLinkActive="router-link-active"
+      >
+        <button mat-stroked-button color="accent">More details</button>
       </a>
     </mat-card-actions>
   </mat-card>

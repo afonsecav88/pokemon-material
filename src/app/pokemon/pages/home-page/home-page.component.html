@@ -15,8 +15,14 @@
         <div><app-history-pokemon /></div>
       </mat-sidenav>
 
-      <mat-sidenav-content class="sidenav-right">
-        <button mat-icon-button class="example-icon" (click)="left.toggle()">
+      <mat-sidenav-content>
+        <button
+          mat-icon-button
+          matTooltip="Pulse para ver el menu"
+          matTooltipPosition="right"
+          class="icon-sidenav"
+          (click)="left.toggle()"
+        >
           <mat-icon>menu</mat-icon>
         </button>
         <router-outlet />

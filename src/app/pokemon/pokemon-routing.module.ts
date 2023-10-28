@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { PokemonDetailsComponent } from './pages/pokemon-details/pokemon-details.component';
 import { PokemonListComponent } from './pages/pokemon-list/pokemon-list.component';
 import { NotFoundPageComponent } from '../shared/pages/not-found-page/not-found-page.component';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     component: HomePageComponent,
     children: [
       { path: 'list', component: PokemonListComponent },
+      { path: 'pokemon', component: PokemonComponent },
       { path: 'pokemon/:id', component: PokemonDetailsComponent },
       {
         path: 'pageNotFound',

@@ -1,15 +1,18 @@
-import { Injectable, WritableSignal, inject, signal } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
   public router = inject(Router);
+  public apiUrl = apiUrl;
+  public http = inject(HttpClient);
+  public pokemons: Pokemon[] = [];
 
   constructor() {
     const storage = this.getLocalStorage();
@@ -24,27 +27,24 @@ export class PokemonService {
     localStorage.setItem('pokemons', JSON.stringify(pokemon));
   }
 
-  // private redirectToListPokemonView() {
-  //   return this.router.navigateByUrl('/pokemon');
-  // }
-
-  public apiUrl = apiUrl;
-  public http = inject(HttpClient);
-  // public pokemons = signal<Pokemon[]>([]);
-  public pokemons: Pokemon[] = [];
-
   private getLocalStorage() {
     if (!localStorage.getItem('pokemons')) return;
     return (this.pokemons = JSON.parse(localStorage.getItem('pokemons')!));
   }
 
-  getPokemon(pokemonName: string): Observable<void> {
+  private isPokemonFounded(pokemonName: string): boolean {
+    const pokemonFounded = this.pokemons.filter((x) => x.name === pokemonName);
+    return pokemonFounded.length !== 0 ? true : false;
+  }
+
+  getPokemon(pokemonName: string): Observable<any> {
     const searchPokemon = pokemonName.trim().toLowerCase();
+    if (this.isPokemonFounded(searchPokemon))
+      return of(console.log('ya esta el pokemon'));
     const url: string = `${this.apiUrl}/${searchPokemon}`;
     return this.http.get<Pokemon>(url).pipe(
       map((resp: Pokemon) => {
         this.pokemons.push(resp), this.updateLocalStorage(this.pokemons);
-        // this.redirectToListPokemonView();
       })
     );
   }
