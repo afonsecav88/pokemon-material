@@ -1,26 +1,33 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, computed, inject, signal } from '@angular/core';
 import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
 import { Router } from '@angular/router';
-import { Observable, map, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  public router = inject(Router);
-  public http = inject(HttpClient);
-  public apiUrl = apiUrl;
-  public pokemons: Pokemon[] = [];
+  private router = inject(Router);
+  private http = inject(HttpClient);
+  private apiUrl = apiUrl;
+  private pokemons: Pokemon[] = [];
 
   constructor() {
-    const storage = this.getLocalStorage();
-    console.log('obteniendo del Storage', storage);
+    this.getLocalStorage();
+    this.getFirstTenPokemon;
   }
 
   public get pokemon(): Pokemon[] {
     return [...this.pokemons];
+  }
+  public get getFirstTenPokemon() {
+    const firstTenPokemon: Signal<Pokemon[]> = computed(() =>
+      this.firstTenPokemons()
+    );
+    console.log('Mostrando el get señal', firstTenPokemon());
+    return firstTenPokemon();
   }
 
   private updateLocalStorage(pokemon: Pokemon[]) {
@@ -39,10 +46,16 @@ export class PokemonService {
 
   private navigateAfterSearch() {
     this.router
-      .navigateByUrl('/pokemon/pokemon/list', { skipLocationChange: false })
+      .navigateByUrl('/pokemon/pokemon/list', { skipLocationChange: true })
       .then(() => {
         this.router.navigate(['list']);
       });
+  }
+
+  private firstTenPokemons() {
+    const firstTenPokemon = this.pokemons.slice(0, 10);
+    console.log('Mostrando 10 primeros desde el servicio:', firstTenPokemon);
+    return firstTenPokemon;
   }
 
   getPokemon(pokemonName: string): Observable<any> {
@@ -51,7 +64,7 @@ export class PokemonService {
       return of(console.log('ya esta el pokemon'));
     const url: string = `${this.apiUrl}/${searchPokemon}`;
     return this.http.get<Pokemon>(url).pipe(
-      map((resp: Pokemon) => {
+      tap((resp: Pokemon) => {
         this.pokemons.unshift(resp), this.updateLocalStorage(this.pokemons);
         this.navigateAfterSearch();
       })

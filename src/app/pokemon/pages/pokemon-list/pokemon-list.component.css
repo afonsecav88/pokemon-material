@@ -21,3 +21,9 @@
 .card-actions{
   justify-content: flex-end;
 }
+
+.card-not-pokemon{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}

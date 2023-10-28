@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Pokemon } from '../../intefaces/pokemon.interface';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -7,15 +7,16 @@ import { PokemonService } from '../../services/pokemon.service';
   templateUrl: './history-pokemon.component.html',
   styleUrls: ['./history-pokemon.component.css'],
 })
-export class HistoryPokemonComponent implements OnInit {
-  public historySearchPokemons!: Pokemon[];
+export class HistoryPokemonComponent {
+  public historySearchPokemons = signal<Pokemon[]>([]);
   private pokemonService = inject(PokemonService);
 
-  ngOnInit(): void {
-    this.historySearchPokemons = this.pokemonService.pokemon;
+  constructor() {
+    this.historySearchPokemons.set(this.pokemonService.getFirstTenPokemon);
+    console.log('Desde history search :', this.historySearchPokemons());
   }
 
   searchPokemon() {
-    console.log('has buscado un pokemon');
+    console.log('Has visto el detalle de un pokemon');
   }
 }

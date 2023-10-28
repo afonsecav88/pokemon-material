@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { Pokemon } from '../../intefaces/pokemon.interface';
 
@@ -7,11 +7,12 @@ import { Pokemon } from '../../intefaces/pokemon.interface';
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.css'],
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent {
   public servicePokemon = inject(PokemonService);
-  public pokemons!: Pokemon[];
+  public pokemons = signal<Pokemon[]>([]);
 
-  ngOnInit(): void {
-    this.pokemons = this.servicePokemon.pokemon;
+  constructor() {
+    this.pokemons.update(() => this.servicePokemon.pokemon);
+    console.log('Desde pokemon list: ', this.pokemons());
   }
 }
