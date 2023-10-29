@@ -1,4 +1,4 @@
-import { Injectable, Signal, computed, inject, signal } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
@@ -12,22 +12,25 @@ export class PokemonService {
   private router = inject(Router);
   private http = inject(HttpClient);
   private apiUrl = apiUrl;
+
   private pokemons: Pokemon[] = [];
+  private firstTenPokemon: Pokemon[] = [];
 
   constructor() {
     this.getLocalStorage();
-    this.getFirstTenPokemon;
+    this.catchFirstTenPokemons();
   }
 
   public get pokemon(): Pokemon[] {
     return [...this.pokemons];
   }
   public get getFirstTenPokemon() {
-    const firstTenPokemon: Signal<Pokemon[]> = computed(() =>
-      this.firstTenPokemons()
-    );
-    console.log('Mostrando el get señal', firstTenPokemon());
-    return firstTenPokemon();
+    return [...this.firstTenPokemon];
+  }
+
+  private catchFirstTenPokemons(): Pokemon[] {
+    this.firstTenPokemon = this.pokemons.slice(0, 10);
+    return this.firstTenPokemon;
   }
 
   private updateLocalStorage(pokemon: Pokemon[]) {
@@ -50,12 +53,6 @@ export class PokemonService {
       .then(() => {
         this.router.navigate(['list']);
       });
-  }
-
-  private firstTenPokemons() {
-    const firstTenPokemon = this.pokemons.slice(0, 10);
-    console.log('Mostrando 10 primeros desde el servicio:', firstTenPokemon);
-    return firstTenPokemon;
   }
 
   getPokemon(pokemonName: string): Observable<any> {

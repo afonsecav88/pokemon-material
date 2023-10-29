@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { Pokemon } from '../../intefaces/pokemon.interface';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -12,8 +12,8 @@ export class HistoryPokemonComponent {
   private pokemonService = inject(PokemonService);
 
   constructor() {
-    this.historySearchPokemons.set(this.pokemonService.getFirstTenPokemon);
-    console.log('Desde history search :', this.historySearchPokemons());
+    this.historySearchPokemons.update(() => this.pokemonService.pokemon);
+    effect(() => this.historySearchPokemons());
   }
 
   searchPokemon() {
