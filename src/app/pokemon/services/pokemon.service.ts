@@ -14,22 +14,23 @@ export class PokemonService {
   private apiUrl = apiUrl;
 
   private pokemons: Pokemon[] = [];
-  private firstTenPokemon: Pokemon[] = [];
+  private tenPokemon: Pokemon[] = [];
 
   constructor() {
     this.getLocalStorage();
-    this.catchFirstTenPokemons();
+    console.log('first ten pokemon update', this.catchFirstTenPokemons());
   }
 
   public get pokemon(): Pokemon[] {
     return [...this.pokemons];
   }
-  public get getFirstTenPokemon() {
-    return [...this.firstTenPokemon];
+
+  public get firstTenPokemon() {
+    return [...this.tenPokemon];
   }
 
   private catchFirstTenPokemons(): Pokemon[] {
-    this.firstTenPokemon = this.pokemons.slice(0, 10);
+    this.tenPokemon = this.pokemons.slice(0, 10);
     return this.firstTenPokemon;
   }
 
@@ -63,6 +64,7 @@ export class PokemonService {
     return this.http.get<Pokemon>(url).pipe(
       tap((resp: Pokemon) => {
         this.pokemons.unshift(resp), this.updateLocalStorage(this.pokemons);
+        this.catchFirstTenPokemons();
         this.navigateAfterSearch();
       })
     );

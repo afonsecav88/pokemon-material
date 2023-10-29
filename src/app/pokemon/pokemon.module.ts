@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { HistoryPokemonComponent } from './components/history-pokemon/history-pokemon.component';
 import { RouterModule } from '@angular/router';
+import { ContainerPageComponent } from '../shared/components/container-page/container-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     PokemonListComponent,
     PokemonComponent,
     HistoryPokemonComponent,
+    ContainerPageComponent,
   ],
   imports: [
     CommonModule,

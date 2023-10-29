@@ -4,26 +4,3 @@
   flex-wrap: wrap;
   max-width: 100%;
 }
-
-.sidenav-container {
-  width: 100vw;
-  height: 85vh;
-}
-
-.sidenav-left {
-  display: flex;
-  align-content: space-between;
-  align-items: center;
-  padding: 5px;
-  /* padding-right: 5px; */
-}
-
-.sidenav-right {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: space-around;
-  align-items: stretch;
-  margin-top: 5px;
-  padding-left: 10px;
-}
