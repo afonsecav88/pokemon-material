@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Pokemon } from '../../intefaces/pokemon.interface';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -8,13 +8,15 @@ import { PokemonService } from '../../services/pokemon.service';
   styleUrls: ['./history-pokemon.component.css'],
 })
 export class HistoryPokemonComponent {
-  public historySearchPokemons = signal<Pokemon[]>([]);
   private pokemonService = inject(PokemonService);
+  public historySearchPokemons: Pokemon[] = [];
 
   constructor() {
-    this.historySearchPokemons.update(() => this.pokemonService.pokemon);
-    effect(() => this.historySearchPokemons());
+    this.historySearchPokemons = this.pokemonService.firstTenPokemon;
   }
+  // console.log('Desde history search :', this.historySearchPokemons());
+
+  getFirstTenPokemon() {}
 
   searchPokemon() {
     console.log('Has visto el detalle de un pokemon');

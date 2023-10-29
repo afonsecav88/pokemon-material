@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, effect, inject, signal, computed } from '@angular/core';
 import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
@@ -18,7 +18,7 @@ export class PokemonService {
 
   constructor() {
     this.getLocalStorage();
-    console.log('first ten pokemon update', this.catchFirstTenPokemons());
+    this.catchFirstTenPokemons();
   }
 
   public get pokemon(): Pokemon[] {
@@ -26,12 +26,12 @@ export class PokemonService {
   }
 
   public get firstTenPokemon() {
-    return [...this.tenPokemon];
+    return this.tenPokemon;
   }
 
-  private catchFirstTenPokemons(): Pokemon[] {
+  private catchFirstTenPokemons() {
     this.tenPokemon = this.pokemons.slice(0, 10);
-    return this.firstTenPokemon;
+    return this.tenPokemon;
   }
 
   private updateLocalStorage(pokemon: Pokemon[]) {
