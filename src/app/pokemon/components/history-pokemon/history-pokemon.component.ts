@@ -12,11 +12,11 @@ export class HistoryPokemonComponent {
   public historySearchPokemons: Pokemon[] = [];
 
   constructor() {
-    this.historySearchPokemons = this.pokemonService.firstTenPokemon;
+    this.pokemonService.firstTenPokemon.subscribe((pokemon: Pokemon[]) => {
+      console.log(pokemon);
+      this.historySearchPokemons = pokemon;
+    });
   }
-  // console.log('Desde history search :', this.historySearchPokemons());
-
-  getFirstTenPokemon() {}
 
   searchPokemon() {
     console.log('Has visto el detalle de un pokemon');

@@ -1,9 +1,9 @@
-import { Injectable, effect, inject, signal, computed } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
 import { Router } from '@angular/router';
-import { Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,24 +14,26 @@ export class PokemonService {
   private apiUrl = apiUrl;
 
   private pokemons: Pokemon[] = [];
-  private tenPokemon: Pokemon[] = [];
+  private tenPokemon: BehaviorSubject<Pokemon[]> = new BehaviorSubject<
+    Pokemon[]
+  >([]);
 
   constructor() {
     this.getLocalStorage();
-    this.catchFirstTenPokemons();
+    this.catchFirstTenPokemons(this.pokemons);
   }
 
   public get pokemon(): Pokemon[] {
     return [...this.pokemons];
   }
 
-  public get firstTenPokemon() {
-    return this.tenPokemon;
+  public get firstTenPokemon(): Observable<Pokemon[]> {
+    return this.tenPokemon.asObservable();
   }
 
-  private catchFirstTenPokemons() {
-    this.tenPokemon = this.pokemons.slice(0, 10);
-    return this.tenPokemon;
+  private catchFirstTenPokemons(pokemons: Pokemon[]) {
+    let firstTenPokemon = pokemons.slice(0, 10);
+    this.tenPokemon.next(firstTenPokemon);
   }
 
   private updateLocalStorage(pokemon: Pokemon[]) {
@@ -64,7 +66,7 @@ export class PokemonService {
     return this.http.get<Pokemon>(url).pipe(
       tap((resp: Pokemon) => {
         this.pokemons.unshift(resp), this.updateLocalStorage(this.pokemons);
-        this.catchFirstTenPokemons();
+        this.catchFirstTenPokemons(this.pokemons);
         this.navigateAfterSearch();
       })
     );
