@@ -14,7 +14,7 @@ export class PokemonService {
   private apiUrl = apiUrl;
 
   private pokemons: Pokemon[] = [];
-  private tenPokemon: BehaviorSubject<Pokemon[]> = new BehaviorSubject<
+  private tenPokemon$: BehaviorSubject<Pokemon[]> = new BehaviorSubject<
     Pokemon[]
   >([]);
 
@@ -28,12 +28,12 @@ export class PokemonService {
   }
 
   public get firstTenPokemon(): Observable<Pokemon[]> {
-    return this.tenPokemon.asObservable();
+    return this.tenPokemon$.asObservable();
   }
 
   private catchFirstTenPokemons(pokemons: Pokemon[]) {
     let firstTenPokemon = pokemons.slice(0, 10);
-    this.tenPokemon.next(firstTenPokemon);
+    this.tenPokemon$.next(firstTenPokemon);
   }
 
   private updateLocalStorage(pokemon: Pokemon[]) {
