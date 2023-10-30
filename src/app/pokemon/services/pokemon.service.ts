@@ -3,7 +3,7 @@ import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

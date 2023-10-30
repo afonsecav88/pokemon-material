@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -23,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatCardModule,
     MatTooltipModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}
