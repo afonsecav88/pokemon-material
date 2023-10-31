@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Pokemon } from '../../intefaces/pokemon.interface';
 import { PokemonService } from '../../services/pokemon.service';
-import { NotificationsService } from '../../services/notifications.service';
 
 @Component({
   selector: 'app-history-pokemon',
@@ -10,7 +9,6 @@ import { NotificationsService } from '../../services/notifications.service';
 })
 export class HistoryPokemonComponent {
   private pokemonService = inject(PokemonService);
-  private notificationService = inject(NotificationsService);
   public historySearchPokemons: Pokemon[] = [];
 
   constructor() {
@@ -21,6 +19,6 @@ export class HistoryPokemonComponent {
   }
 
   searchPokemon() {
-    this.notificationService.error('Se inserto correctamente');
+    console.log('object');
   }
 }

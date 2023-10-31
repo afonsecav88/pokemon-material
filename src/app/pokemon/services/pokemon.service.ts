@@ -3,7 +3,7 @@ import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,14 +23,6 @@ export class PokemonService {
     this.catchFirstTenPokemons(this.pokemons);
   }
 
-  public get pokemon(): Pokemon[] {
-    return [...this.pokemons];
-  }
-
-  public get firstTenPokemon(): Observable<Pokemon[]> {
-    return this.tenPokemon$.asObservable();
-  }
-
   private catchFirstTenPokemons(pokemons: Pokemon[]) {
     let firstTenPokemon = pokemons.slice(0, 10);
     this.tenPokemon$.next(firstTenPokemon);
@@ -45,11 +37,6 @@ export class PokemonService {
     return (this.pokemons = JSON.parse(localStorage.getItem('pokemons')!));
   }
 
-  private isPokemonFounded(pokemonName: string): boolean {
-    const pokemonFounded = this.pokemons.filter((x) => x.name === pokemonName);
-    return pokemonFounded.length !== 0 ? true : false;
-  }
-
   private navigateAfterSearch() {
     this.router
       .navigateByUrl('/pokemon/pokemon/list', { skipLocationChange: true })
@@ -58,11 +45,21 @@ export class PokemonService {
       });
   }
 
-  getPokemon(pokemonName: string): Observable<any> {
-    const searchPokemon = pokemonName.trim().toLowerCase();
-    if (this.isPokemonFounded(searchPokemon))
-      return of(console.log('ya esta el pokemon'));
-    const url: string = `${this.apiUrl}/${searchPokemon}`;
+  public get pokemon(): Pokemon[] {
+    return [...this.pokemons];
+  }
+
+  public get firstTenPokemon(): Observable<Pokemon[]> {
+    return this.tenPokemon$.asObservable();
+  }
+
+  public isPokemonFounded(pokemonName: string): boolean {
+    const pokemonFounded = this.pokemons.filter((x) => x.name === pokemonName);
+    return pokemonFounded.length !== 0 ? true : false;
+  }
+
+  public getPokemon(pokemonName: string): Observable<any> {
+    const url: string = `${this.apiUrl}/${pokemonName}`;
     return this.http.get<Pokemon>(url).pipe(
       tap((resp: Pokemon) => {
         this.pokemons.unshift(resp), this.updateLocalStorage(this.pokemons);

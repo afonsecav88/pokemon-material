@@ -14,14 +14,12 @@ export class NotificationsService {
 
   private snackBarConfig(panelClass: string): MatSnackBarConfig<any> {
     return {
-      duration: 3000,
+      duration: 4500,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
       panelClass: panelClass,
     };
   }
-
-  constructor() {}
 
   success(message: string) {
     this.snackBar.open(message, '', this.snackBarConfig('success-snackbar'));
