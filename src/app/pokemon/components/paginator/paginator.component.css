@@ -1,0 +1,9 @@
+.pokemon-paginator{
+  display: flex;
+  height: 87px;
+  font-size: medium;
+  border: 1px solid rebeccapurple;
+  align-content: space-between;
+  justify-content: space-around;
+  margin: 20px 20px 20px 5px;
+}

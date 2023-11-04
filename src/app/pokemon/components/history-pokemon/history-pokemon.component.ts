@@ -13,7 +13,6 @@ export class HistoryPokemonComponent {
 
   constructor() {
     this.pokemonService.firstTenPokemon.subscribe((pokemon: Pokemon[]) => {
-      console.log(pokemon);
       this.historySearchPokemons = pokemon;
     });
   }

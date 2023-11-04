@@ -11,6 +11,7 @@ import { MaterialModule } from '../material/material.module';
 import { HistoryPokemonComponent } from './components/history-pokemon/history-pokemon.component';
 import { RouterModule } from '@angular/router';
 import { ContainerPageComponent } from '../shared/components/container-page/container-page.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ContainerPageComponent } from '../shared/components/container-page/cont
     PokemonComponent,
     HistoryPokemonComponent,
     ContainerPageComponent,
+    PaginatorComponent,
   ],
   imports: [
     CommonModule,
