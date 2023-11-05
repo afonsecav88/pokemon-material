@@ -1,5 +1,11 @@
-import { Component, Output, inject, EventEmitter } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
@@ -8,38 +14,24 @@ import { PokemonService } from '../../services/pokemon.service';
   styleUrls: ['./paginator.component.css'],
 })
 export class PaginatorComponent {
-  @Output() eventPaginator = new EventEmitter<PageEvent>();
-
   private pokemonService = inject(PokemonService);
+  @Output() pageInfoPaginator = new EventEmitter<any>();
 
-  constructor() {}
+  contructor() {}
 
-  length = this.pokemonService.pokemon.length;
   pageSize = 10;
-  pageIndex = 0;
-  pageSizeOptions = [5, 10];
+  pageIndex = 1;
+  totalItems = this.pokemonService.pokemon.length;
 
-  hidePageSize = false;
-  showPageSizeOptions = true;
-  showFirstLastButtons = true;
-  disabled = false;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
-  pageEvent!: PageEvent;
-
-  handlePageEvent(e: PageEvent) {
-    this.eventPaginator.emit(e);
-    this.pageEvent = e;
-    console.log('Este es el evento: ', e);
-    this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageIndex = e.pageIndex;
-  }
-
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    if (setPageSizeOptionsInput) {
-      this.pageSizeOptions = setPageSizeOptionsInput
-        .split(',')
-        .map((str) => +str);
-    }
+  onPageChange(event: PageEvent) {
+    this.pageIndex = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.pageInfoPaginator.emit({
+      pageIndex: this.pageIndex,
+      pageSize: this.pageSize,
+    });
   }
 }

@@ -3,8 +3,7 @@ import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../intefaces/pokemon.interface';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { PageEvent } from '@angular/material/paginator';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -60,12 +59,12 @@ export class PokemonService {
     return pokemonFounded.length !== 0 ? true : false;
   }
 
-  nextTenPokemon(event: PageEvent) {
-    console.log('Este es el evento: ', event);
-    if (event.pageSize === 5) {
-      return this.pokemons.slice(event.pageSize, event.pageSize + 5);
-    }
-    return this.pokemons.slice(event.pageSize, event.pageSize + 10);
+  nextTenPokemon(page: number, pageSize: number): Pokemon[] {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedData = this.pokemons.slice(startIndex, endIndex);
+    console.log(this.pokemons);
+    return paginatedData;
   }
 
   public getPokemon(pokemonName: string): Observable<any> {
