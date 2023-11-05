@@ -6,17 +6,18 @@
 
 .card-content {
   display: flex;
-  flex-direction: column;
-  align-items: center
+  align-items: center;
+  gap: 15px;
 }
 
-.example-card {
+.pokemon-card {
   max-width: 350px;
 }
 
 .image-pokemon {
   width: 200px;
   height: 200px;
+  margin-right: 10px;
 }
 .card-actions{
   justify-content: flex-end;

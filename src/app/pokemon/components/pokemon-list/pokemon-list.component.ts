@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
-import { Pokemon } from '../../intefaces/pokemon.interface';
+import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({

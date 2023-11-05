@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Pokemon } from '../../intefaces/pokemon.interface';
+import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
@@ -15,9 +15,5 @@ export class HistoryPokemonComponent {
     this.pokemonService.firstTenPokemon.subscribe((pokemon: Pokemon[]) => {
       this.historySearchPokemons = pokemon;
     });
-  }
-
-  searchPokemon() {
-    console.log('object');
   }
 }

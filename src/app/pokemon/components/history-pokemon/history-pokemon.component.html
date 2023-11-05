@@ -3,14 +3,14 @@
     <div mat-subheader><strong>Pokemons que ya has buscado:</strong></div>
 
     <mat-list-item *ngFor="let pokemon of historySearchPokemons">
-      <button
-        mat-stroked-button
-        class="button-pokemon"
-        (click)="searchPokemon()"
-        color="primary"
+      <a
+        [routerLink]="['/pokemon/pokemon/', pokemon.id]"
+        routerLinkActive="router-link-active"
       >
-        {{ pokemon.name }}
-      </button>
+        <button mat-stroked-button class="button-pokemon" color="primary">
+          {{ pokemon.name }}
+        </button>
+      </a>
     </mat-list-item>
   </mat-nav-list>
 

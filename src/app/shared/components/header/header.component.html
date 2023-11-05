@@ -1,4 +1,8 @@
 <mat-toolbar color="primary">
-  <span><img class="logo-image" src="assets/logo_picachu.ico" alt="" /></span>
-  <span><img class="slogan-image" src="assets/t_pokemon.png" alt="" /></span>
+  <a [routerLink]="['/pokemon/', 'list']">
+    <span><img class="logo-image" src="assets/logo_picachu.ico" alt="" /></span>
+  </a>
+  <a [routerLink]="['/pokemon/', 'list']">
+    <span><img class="slogan-image" src="assets/t_pokemon.png" alt="" /></span>
+  </a>
 </mat-toolbar>

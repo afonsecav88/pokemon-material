@@ -1,5 +1,5 @@
 <div class="container-card">
-  <mat-card class="example-card">
+  <mat-card class="pokemon-card">
     <mat-card-header>
       <div mat-card-avatar>
         <mat-card-title>{{ pokemon[0].name | titlecase }}</mat-card-title>
@@ -12,15 +12,24 @@
         [src]="pokemon[0].sprites.other.dream_world.front_default"
         alt="Pokemon "
       />
-      <p></p>
+      <div>
+        <img [src]="pokemon[0].sprites.front_default" alt="Pokemon " />
+        <h3><strong>Altura: </strong> {{ pokemon[0].height }} cm</h3>
+        <h3><strong>Peso: </strong> {{ pokemon[0].weight }} kg</h3>
+        <h3><strong>Exp. Base: </strong> {{ pokemon[0].base_experience }}</h3>
+        <h3><strong>Orden: </strong> {{ pokemon[0].order }}</h3>
+      </div>
     </mat-card-content>
     <mat-card-actions class="card-actions">
-      <!-- <a
-        [routerLink]="['/pokemon/pokemon/', i]"
+      <a
+        [routerLink]="['/pokemon/', 'list']"
         routerLinkActive="router-link-active"
-      > -->
-      <!-- <button mat-stroked-button color="accent">More details</button> -->
-      <!-- </a> -->
+      >
+        <button mat-stroked-button class="button-pokemon" color="primary">
+          <mat-icon>undo</mat-icon>
+          Regresar
+        </button>
+      </a>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { apiUrl } from '../../../environments/environments.prod';
 import { HttpClient } from '@angular/common/http';
-import { Pokemon } from '../intefaces/pokemon.interface';
+import { Pokemon } from '../interfaces/pokemon.interface';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
@@ -12,7 +12,6 @@ export class PokemonService {
   private router = inject(Router);
   private http = inject(HttpClient);
   private apiUrl = apiUrl;
-
   private pokemons: Pokemon[] = [];
   private tenPokemon$: BehaviorSubject<Pokemon[]> = new BehaviorSubject<
     Pokemon[]

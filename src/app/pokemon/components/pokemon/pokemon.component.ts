@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Pokemon } from '../../intefaces/pokemon.interface';
+import { Pokemon } from '../../interfaces/pokemon.interface';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../../services/pokemon.service';
 
