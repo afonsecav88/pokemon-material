@@ -1,0 +1,29 @@
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.example-card {
+  max-width: 350px;
+}
+
+.image-pokemon {
+  width: 200px;
+  height: 200px;
+}
+.card-actions{
+  justify-content: flex-end;
+}
+
+.card-not-pokemon{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}

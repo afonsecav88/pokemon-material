@@ -67,7 +67,7 @@ export class PokemonService {
     return paginatedData;
   }
 
-  public getPokemon(pokemonName: string): Observable<any> {
+  public getPokemon(pokemonName: string): Observable<Pokemon> {
     const url: string = `${this.apiUrl}/${pokemonName}`;
     return this.http.get<Pokemon>(url).pipe(
       tap((resp: Pokemon) => {
@@ -76,5 +76,9 @@ export class PokemonService {
         this.navigateAfterSearch();
       })
     );
+  }
+
+  public getPokemonById(id: number): Pokemon[] {
+    return this.pokemons.filter((x) => x.id == id);
   }
 }
