@@ -12,4 +12,4 @@
 2. Para levantar el server de desarrollo ```ng serve -o```
 3. Para hacer el build de la app ```ng build``` 
 
-> [!NOTE] La app esta desplegada en este URL https://angular-pokemon.netlify.app/
+### Nota: La app esta desplegada en este URL https://angular-pokemon.netlify.app/
