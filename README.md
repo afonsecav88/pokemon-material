@@ -1,15 +1,15 @@
-# PokemonMaterial
+# Angular Pokemon Material
 
-```Este proyecto hace uso de angular y angular material, se realiza el consumo del api pokemon para realizar busquedas de pokemons.```
+### Aplicación de Angular que consume la api de https://pokeapi.co/api/v2/pokemon/
 
-## Instalar dependencias
+### Módulo de tareas
+- Hacer busqueda de pokemon por nombre.
+- Permite el paginado del listado de pokemon.
+- La aplicación tiene notificaciones
 
-Usa el comando `npm install` para instalar las dependencias de desarrollo.
+### Levantar la aplicación en desarrollo
+1. Para instalar dependencias de desarrollo ```npm install```
+2. Para levantar el server de desarrollo ```ng serve -o```
+3. Para hacer el build de la app ```ng build``` 
 
-## Levantar el servidor de desarrollo
-
-Usa el comando `ng serve` para correr el proyecto en desarrollo.
-
-## Hacer build de producción
-
-Usa el comando `ng build` para hacer el build del proyecto.
+> [!NOTE] La app esta desplegada en este URL https://angular-pokemon.netlify.app/
