@@ -1,6 +1,9 @@
 # Angular Pokemon Material
 
 ### Aplicación de Angular que consume la api de https://pokeapi.co/api/v2/pokemon/
+- Uso de Angular.
+- Uso de Flexbox y Angular Material.  
+- Almacenamiento en LocalStorage.
 
 ### Módulo de pokemon
 - Búsqueda de un pokemon por nombre.
