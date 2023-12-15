@@ -2,10 +2,11 @@
 
 ### Aplicación de Angular que consume la api de https://pokeapi.co/api/v2/pokemon/
 
-### Módulo de tareas
-- Hacer busqueda de pokemon por nombre.
+### Módulo de pokemon
+- Búsqueda de un pokemon por nombre.
 - Permite el paginado del listado de pokemon.
-- La aplicación tiene notificaciones
+- Notificaciones.
+- Ver detalles de un pokemon.
 
 ### Levantar la aplicación en desarrollo
 1. Para instalar dependencias de desarrollo ```npm install```
